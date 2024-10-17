@@ -5,14 +5,15 @@ public class PaintColor extends Paint
 {
 
 	Color c;
-	
+
 	public PaintColor(Color c)
 	{
-		this.c = c;		
+		this.c = c;
 	}
-	
-	
-	
+
+
+
+	@Override
 	public Color getColor()
 	{
 		return c;

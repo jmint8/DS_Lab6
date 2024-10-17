@@ -5,14 +5,14 @@ public class PaintBrighter extends Paint
 {
 
 	Paint inner;
-	
-	
+
+
 	public PaintBrighter(Paint inner)
-	{		
-		this.inner = inner;		
+	{
+		this.inner = inner;
 	}
-	
-	
+
+
 	@Override
 	public Color getColor()
 	{

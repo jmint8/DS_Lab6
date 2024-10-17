@@ -4,10 +4,10 @@ import javafx.scene.paint.Color;
 abstract public class Paint
 {
 
-   //returns the color of the paint	
-	public abstract Color getColor();	
-	
-   
+   //returns the color of the paint
+	public abstract Color getColor();
+
+
    //determines if this paint is equal to that paint.
 	boolean equals(Paint p)
 	{
@@ -23,7 +23,7 @@ abstract public class Paint
 	{
 		return getColor().toString();
 	}
-	
-	
-	
+
+
+
 }

@@ -8,7 +8,7 @@ public class RemoveRecursion
       public int n; // value of n parameter
       public int pos = 0; // where in the code am I?
       public int ret = 0; // also have to store return value
-      
+
       public Record(int n)
       {
          this.n = n; // pos and ret default to 0
@@ -18,8 +18,8 @@ public class RemoveRecursion
    // Rewrite fib() to eliminate recursion
    public static int fib2(int n)
    {
-      Stack<Record> s = new Stack<Record>(); // simulate system stack
-      
+      Stack<Record> s = new Stack<>(); // simulate system stack
+
       s.push(new Record(n)); // push parameter n on stack
       int ret = 0; // return value
       while (! s.isEmpty()) // while stack not empty
@@ -50,27 +50,31 @@ public class RemoveRecursion
       }
       return ret; // we are finished!
    }
-   
+
    public static int fib(int n)
    {
       if (n <= 0)
-         return 0;
-      else if (n == 1)
-         return 1;
-      else
-         return fib(n - 1) + fib(n - 2);
+	{
+		return 0;
+	} else if (n == 1)
+	{
+		return 1;
+	} else
+	{
+		return fib(n - 1) + fib(n - 2);
+	}
    }
-   
+
    public static void main(String[] args)
    {
       for (int i=1; i<=10; i++)
       {
          System.out.println("fib(" + i + ") = " + fib2(i)); // i'th Fibonacci number
       }
-      
+
       // still takes a long time since no memoization :(
       System.out.println();
-      System.out.println("fib(30) = " + fib2(30)); 
+      System.out.println("fib(30) = " + fib2(30));
    }
 
 }
