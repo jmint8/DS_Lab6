@@ -59,22 +59,46 @@ set the "paint" for the paintbrush
 		paint = D;
 	}
 	
-	public void recfill(int x, int y, Paint[][] mesh)
-	{
-		Paint ogColor = mesh[x][y];
-		//TODO
-		//check directions
-		recFill(x,y,mesh,ogColor);
-	}
 	
 	private void recFill(int x, int y, Paint[][] mesh,Paint ogColor)
 	{
-		if (mesh[x][y]==ogColor)
+		if(x<0||y<0||x>=mesh.length||y>=mesh[0].length)
 		{
-			mesh[x][y]=this.paint;
+			return;
 		}
-		//TODO check Directions
+		if(mesh[x][y].equals(ogColor))
+		{
+			mesh[x][y]=getPaint();
+		recFill(x+1,y,mesh,ogColor);
+		recFill(x-1,y,mesh,ogColor);
+		recFill(x,y+1,mesh,ogColor);
+		recFill(x,y-1,mesh,ogColor);
+		}
 	}
+	
+	private void patFill(int x, int y, Paint[][] mesh,Paint ogColor)
+	{
+		if(x<0||y<0||x>=mesh.length||y>=mesh[0].length)
+		{
+			return;
+		}
+		if(mesh[x][y].equals(ogColor))
+		{
+			if(x%2==0)
+			{
+				mesh[x][y]=Gold;
+			}
+			else
+			{
+				mesh[x][y]=White;
+			}
+			patFill(x+1,y,mesh,ogColor);
+			patFill(x-1,y,mesh,ogColor);
+			patFill(x,y+1,mesh,ogColor);
+			patFill(x,y-1,mesh,ogColor);
+		}
+	}
+	
 
    /*
       paints the mesh, using the current paint and mode at point x,y
@@ -83,20 +107,19 @@ set the "paint" for the paintbrush
 	{
 		if(this.mode == BrushMode.paintMode)
 		{
-		mesh[x][y] = this.paint;
+			mesh[x][y] = this.paint;
 		}
 		if(this.mode == BrushMode.fillMode)
 		{
-			// recursive fill.
+			Paint og = mesh[x][y];
+			recFill(x,y,mesh,og);
 		}
 		if(this.mode == BrushMode.pattern1Mode)
 		{
-			// recursive fill but pattern.
-		}
-		
+			Paint og = mesh[x][y];
+			patFill(x,y,mesh,og);
+		}	
 	}
-
-
 
 /*
    set the drawing mode of the paint brush.
